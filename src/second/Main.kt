@@ -1,13 +1,15 @@
+package second
+
 import java.lang.Exception
 import java.lang.IllegalArgumentException
 import java.util.*
 
 
-fun main() {
-    println("getWarmth(Color.YELLOW): ${getWarmth(Color.YELLOW)}")
-    println("getMnemonic(Color.RED): ${getMnemonic(Color.RED)}")
-    println("mix(Color.YELLOW, Color.BLUE): ${mix(Color.YELLOW, Color.BLUE)}")
-    println("mixOptimized(Color.BLUE, Color.YELLOW): ${mixOptimized(Color.BLUE, Color.YELLOW)}")
+fun main(args: Array<String>) {
+    println("second.getWarmth(second.Color.YELLOW): ${getWarmth(Color.YELLOW)}")
+    println("second.getMnemonic(second.Color.RED): ${getMnemonic(Color.RED)}")
+    println("second.mix(second.Color.YELLOW, second.Color.BLUE): ${mix(Color.YELLOW, Color.BLUE)}")
+    println("second.mixOptimized(second.Color.BLUE, second.Color.YELLOW): ${mixOptimized(Color.BLUE, Color.YELLOW)}")
     println(eval(Expr.Sum(Expr.Sum(Expr.Num(1), Expr.Num(2)), Expr.Num(4))))
 
     for (i in 1 .. 100) print(fizzBuzz(i) + " ")
@@ -19,6 +21,12 @@ fun main() {
     for (c in 'A'..'F') binaryReps[c] = Integer.toBinaryString(c.toInt())
     
     for ((letter, binary) in binaryReps) println("$letter = $binary")
+
+    println(isLetter('q'))
+
+    println(isNotDigits('1'))
+
+    println(recognize('9'))
 
 }
 
@@ -77,3 +85,12 @@ fun fizzBuzz(i: Int) = when {
     else -> "$i"
 }
 
+fun isLetter(c: Char) = c in 'a'..'z' || c in 'A' .. 'Z'
+
+fun isNotDigits(c: Char) = c !in '0'..'9'
+
+fun recognize(c: Char) = when (c) {
+    in '0'..'9' -> "$c - It's a digit!"
+    in 'a'..'z', in 'A'..'Z' -> "$c - It's a letter."
+    else -> "Unknown..."
+}
