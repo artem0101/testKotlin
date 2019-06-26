@@ -9,23 +9,37 @@ fun main() {
 
     println(list)
 
-    println(joinToString(list, "; ", "(", ")"))
+    println(list.joinToString("; ", "(", ")"))
 
-    println(joinToString(list, separator = " ", prefix = " ", postfix = "."))
+    println(list.joinToString(separator = " ", prefix = " ", postfix = "."))
 
-    println(joinToString(list, postfix = "&", prefix = "  "))
+    println(list.joinToString(postfix = "&", prefix = "  "))
 
     println("Kotlin".lastChar())
+
+    println(listOf("one", "two", "three").join(" "))
+
+    val view: View = Button()
+    view.click()
+
+    val view1: View = Button()
+    view1.showoff()
+
+    println("Kotlin".lastChar)
+
+    val sb = StringBuilder("Kotlin?")
+    sb.lastChar = '!'
+    println(sb)
+
 }
 
-fun <T> joinToString(
-    collection: Collection<T>,
+fun <T> Collection<T>.joinToString(
     separator: String = ", ",
     prefix: String = "",
     postfix: String = ""
 ): String {
     val result = StringBuilder(prefix)
-    for ((index, element) in collection.withIndex()) {
+    for ((index, element) in this.withIndex()) {
         if (index > 0) result.append(separator)
         result.append(element)
     }
@@ -35,4 +49,29 @@ fun <T> joinToString(
     return result.toString()
 }
 
+fun Collection<String>.join(
+    separator: String = ", ",
+    prefix: String = "",
+    postfix: String = ""
+) = joinToString(separator, prefix, postfix)
+
 fun String.lastChar(): Char = get(length - 1)
+
+open class View {
+    open fun click() = println("View clicked")
+}
+
+fun View.showoff() = println("i'm a view!")
+
+class Button : View() {
+    override fun click() = println("Button clicked")
+}
+
+fun Button.showOff() = println("I'm a button!")
+
+val String.lastChar: Char
+    get() = get(length - 1)
+
+var StringBuilder.lastChar: Char
+    get() = get(length - 1)
+    set(value) = this.setCharAt(length - 1, value)

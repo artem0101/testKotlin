@@ -5,6 +5,7 @@ import java.io.StringReader
 import java.lang.Exception
 import java.lang.IllegalArgumentException
 import java.util.*
+import third.lastChar as last
 
 
 fun main(args: Array<String>) {
@@ -21,7 +22,7 @@ fun main(args: Array<String>) {
 
     val binaryReps = TreeMap<Char, String>()
     for (c in 'A'..'F') binaryReps[c] = Integer.toBinaryString(c.toInt())
-    
+
     for ((letter, binary) in binaryReps) println("$letter = $binary")
 
     println(isLetter('q'))
@@ -32,7 +33,9 @@ fun main(args: Array<String>) {
 
     val reader = BufferedReader(StringReader("234"))
     println(readNumber(reader))
-    println(readNumber(BufferedReader(StringReader("It isn't number("))))
+//    println(readNumber(BufferedReader(StringReader("It isn't number("))))
+
+    println("Kotlin".last())
 
 }
 
