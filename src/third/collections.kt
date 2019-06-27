@@ -8,4 +8,6 @@ fun main() {
     val numbers: Collection<Int> = listOf(1, 43, 2)
     println(numbers.max())
 
+
+
 }
