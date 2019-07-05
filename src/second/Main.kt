@@ -2,8 +2,6 @@ package second
 
 import java.io.BufferedReader
 import java.io.StringReader
-import java.lang.Exception
-import java.lang.IllegalArgumentException
 import java.util.*
 import third.lastChar as last
 
@@ -84,7 +82,7 @@ fun eval(e: Expr): Int =
             println("sum: ${left + right}")
             left + right
         }
-        else -> throw IllegalArgumentException("Unknown expression")
+//        else -> throw IllegalArgumentException("Unknown expression")
     }
 
 fun fizzBuzz(i: Int) = when {

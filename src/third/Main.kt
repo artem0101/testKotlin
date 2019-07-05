@@ -63,7 +63,7 @@ open class View {
 
 fun View.showoff() = println("i'm a view!")
 
-class Button : View() {
+open class Button : View() {
     override fun click() = println("Button clicked")
 }
 
