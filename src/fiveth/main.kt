@@ -40,6 +40,7 @@ fun printProblemCounts(responses: Collection<String>) {
     println("$clientErrors - client errors\n$serverErrors - server errors")
 }
 
+class Book(val title: String, val authors: List<String>)
 
 fun main() {
     val people = listOf(Person("Alice", 29), Person("Bob", 31))
@@ -79,6 +80,31 @@ fun main() {
 
     val nat = Person("Elena", 18)
     println("\n${nat.isAudit()} ")
+
+    val people1 = listOf(Person("Alice", 31), Person("Bob", 29), Person("Carol", 31))
+    println(people1.groupBy { it.age })
+
+    val list1 = listOf("a", "ab", "b")
+    println(list1.groupBy(String::first))
+
+    val books = listOf(
+        Book("Thursday Next", listOf("Jasper Fforde")), Book("Mort", listOf("Terry Pratchett")),
+        Book("God Omens", listOf("Terry Pratchett", "Neil Gaiman"))
+    )
+    println("\n${books.flatMap { it.authors }.toSet()}")
+
+    val strings = listOf("abc", "def")
+    println("\n${strings.flatMap { it.toList() }}")
+
+    listOf(1, 2, 3, 4).asSequence().map { print("map($it) "); it * it }.filter { print("filter($it) "); it % 2 == 0 }
+        .toList()
+
+    println("\n${listOf(1, 2, 3, 4).asSequence().map { it * it }.find { it > 3 }}")
+
+    val people2 = listOf(Person("Alice", 29), Person("Bob", 31), Person("Charles", 31), Person("Dan", 21))
+    println("\n${people2.asSequence().map { it.name }.filter { it.length < 4 }.toList()}")
+    println("\n${people2.asSequence().filter { it.name.length < 4 }.map { it.name }.toList() }")
+
 }
 
 fun sendEmail(person: Person, message: String): Any {
